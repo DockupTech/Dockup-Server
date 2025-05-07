@@ -1,4 +1,4 @@
-package tech.dockup.config;
+package tech.dockup.cc_server.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
