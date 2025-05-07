@@ -1,4 +1,4 @@
-package tech.dockup.cc_server.entity;
+package tech.dockup.cc_server.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
