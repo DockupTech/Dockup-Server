@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: Dockup C&C Server
+  datasource:
+    url: jdbc:sqlite:${DOCKUP_DB_PATH:cc-server.db}
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog-master.yaml
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,liquibase
+  endpoint:
+    liquibase:
+      access: read-only
+
+dockup:
+  database:
+    path: ${DOCKUP_DB_PATH:cc-server.db}
