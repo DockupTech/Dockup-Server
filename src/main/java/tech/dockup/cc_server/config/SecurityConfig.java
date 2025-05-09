@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-//This is the security configuration class for the application5
+//This is the security configuration class for the application
 //It is annotated with @Configuration, which is a Spring annotation that marks the class as a configuration class
 //It is also annotated with @EnableWebSecurity, which is a Spring annotation that enables web security
 @Configuration
