@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tech.dockup.cc_server.model.User;
+import tech.dockup.cc_server.service.DockerService;
 import tech.dockup.cc_server.service.UserService;
 
 
@@ -24,6 +25,9 @@ public class UserController {
     //The @Autowired annotation is used to inject the UserService bean into the UserController bean
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private DockerService dockerService;
 
     //This is a test endpoint to check if the server is running
     //It is annotated with @GetMapping, which is a Spring annotation that maps the method to the GET method of the URL
