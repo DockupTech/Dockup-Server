@@ -1,4 +1,4 @@
-name: Maven Tests
+name: Maven-Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   Maven-Tests:
-    name: Run Tests
+    name: Maven-Tests
     runs-on: ubuntu-latest
     permissions:
       checks: write
