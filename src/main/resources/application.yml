@@ -1,6 +1,7 @@
 spring:
   application:
     name: Dockup C&C Server
+    version: 0.0.1
   datasource:
     url: jdbc:sqlite:${DOCKUP_DB_PATH:cc-server.db}
     driver-class-name: org.sqlite.JDBC
@@ -26,3 +27,8 @@ management:
 dockup:
   database:
     path: ${DOCKUP_DB_PATH:cc-server.db}
+  docker:
+    protocol: ${DOCKUP_DOCKER_PROTOCOL:unix}
+    host: ${DOCKUP_DOCKER_HOST:/var/run/docker.sock}
+    port: ${DOCKUP_DOCKER_PORT:}
+    tlsVerify: ${DOCKUP_DOCKER_TLS_VERIFY:false}

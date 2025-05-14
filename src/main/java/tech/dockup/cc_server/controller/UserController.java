@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tech.dockup.cc_server.model.User;
+import tech.dockup.cc_server.service.DockerService;
 import tech.dockup.cc_server.service.UserService;
 
 
@@ -25,6 +26,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private DockerService dockerService;
+
     //This is a test endpoint to check if the server is running
     //It is annotated with @GetMapping, which is a Spring annotation that maps the method to the GET method of the URL
     //So the overall URL will be .../api/users/hello (The /api/users is the base URL of the controller and the /hello is the endpoint)
@@ -34,7 +38,7 @@ public class UserController {
 
         //Everything returned from the method will be converted to a JSON response except it is a plain String
         //Here we create a new User object using the builder pattern as defined in the User class
-        return User.builder().username("John").displayName("John Doe").build();
+        return User.builder().email("John@gmail.com").enabled(true).build();
     }
 
     //This is a method that creates a new user

@@ -1,13 +1,31 @@
 --liquibase formatted sql
---changeset dockup:user-table
---validCheckSum: 9:7d89c093b93dad63604da6b253e0fa21
+--changeset dockup:initial-tables
+
 
 CREATE TABLE users (
     id TEXT PRIMARY KEY,
-    username TEXT NOT NULL,
-    display_name TEXT NOT NULL,
+    email TEXT NOT NULL,
     password TEXT NOT NULL,
+    enabled BOOLEAN NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT UC_Username UNIQUE (username)
+    CONSTRAINT UC_Email UNIQUE (email)
 );
+
+
+CREATE TABLE volumes (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE containers (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    image TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+

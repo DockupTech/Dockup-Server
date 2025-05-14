@@ -37,7 +37,7 @@ public class UserService {
   }
 
   //This is a method that finds a user by their username
-  public User findByUsername(String username) {
-    return userDAO.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+  public User findByEmail(String email) {
+    return userDAO.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
   }
 }
