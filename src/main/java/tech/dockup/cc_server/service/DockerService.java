@@ -70,7 +70,7 @@ public class DockerService {
   public void getAllContainers(){
     ListVolumesResponse response = client.listVolumesCmd().exec();
     List<InspectVolumeResponse> volumes = response.getVolumes();
-    System.out.println(volumes.get(0));
+    //System.out.println(volumes.get(0));
 
 
     List<Container> containers = client.listContainersCmd().exec();
