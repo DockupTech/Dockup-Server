@@ -1,6 +1,7 @@
 spring:
   application:
     name: Dockup C&C Server
+    version: 0.0.1
   datasource:
     url: jdbc:sqlite:${DOCKUP_DB_PATH:cc-server.db}
     driver-class-name: org.sqlite.JDBC
