@@ -19,20 +19,20 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-docker-action@v4
 
-      - name: Wait for Docker daemon
-        env:
-          DOCKER_HOST: tcp://localhost:2375
-        run: |
-          for i in {1..30}; do
-            if docker info > /dev/null 2>&1; then
-              echo "Docker API is ready"
-              exit 0
-            fi
-            echo "Waiting for Docker API..."
-            sleep 2
-          done
-          echo "Timed out waiting for Docker API" >&2
-          exit 1
+      # - name: Wait for Docker daemon
+      #   env:
+      #     DOCKER_HOST: tcp://localhost:2375
+      #   run: |
+      #     for i in {1..30}; do
+      #       if docker info > /dev/null 2>&1; then
+      #         echo "Docker API is ready"
+      #         exit 0
+      #       fi
+      #       echo "Waiting for Docker API..."
+      #       sleep 2
+      #     done
+      #     echo "Timed out waiting for Docker API" >&2
+      #     exit 1
 
       - uses: actions/checkout@v4
 
