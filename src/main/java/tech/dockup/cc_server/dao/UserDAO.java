@@ -14,6 +14,6 @@ public interface UserDAO extends JpaRepository<User, String> {
   //These functions will be generated automagically by Spring Data JPA
   //It is often as easy as just defining the function name and return type and it will be implemented automatically
   //Make sure to read the documentation of Java regarding the Optional class: https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html
-  Optional<User> findByUsername(String username);
-  boolean existsByUsername(String username);
+  Optional<User> findByEmail(String email);
+  boolean existsByEmail(String email);
 } 

@@ -38,7 +38,7 @@ public class UserController {
 
         //Everything returned from the method will be converted to a JSON response except it is a plain String
         //Here we create a new User object using the builder pattern as defined in the User class
-        return User.builder().username("John").displayName("John Doe").build();
+        return User.builder().email("John@gmail.com").enabled(true).build();
     }
 
     //This is a method that creates a new user
