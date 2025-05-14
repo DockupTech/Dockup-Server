@@ -16,14 +16,38 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up JDK 24
-      uses: actions/setup-java@v4
-      with:
-        java-version: '24'
-        distribution: 'temurin'
-        cache: maven
-    
-    - name: Build with Maven
-      run: mvn -B test --file pom.xml
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
+        with:
+          daemon-config: |
+            {
+              "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"],
+              "debug": true
+            }
+
+      - name: Wait for Docker daemon
+        env:
+          DOCKER_HOST: tcp://localhost:2375
+        run: |
+          for i in {1..30}; do
+            if docker info > /dev/null 2>&1; then
+              echo "Docker API is ready"
+              exit 0
+            fi
+            echo "Waiting for Docker API..."
+            sleep 2
+          done
+          echo "Timed out waiting for Docker API" >&2
+          exit 1
+
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Test with Maven
+        run: mvn -B test --file pom.xml
