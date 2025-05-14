@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 public class DockerConfig {
 
     @Pattern(regexp = "^(https|tcp|unix)$", message = "Protocol must be one of: https, tcp, unix")
-    @Value("${dockup.docker.protocol:unix}")
+    @Value("${dockup.docker.protocol}")
     public String protocol;
 
-    @Value("${dockup.docker.host:/var/run/docker.sock}")
+    @Value("${dockup.docker.host}")
     public String host;
 
-    @Value("${dockup.docker.port:}")
+    @Value("${dockup.docker.port}")
     public String port;
 
-    @Value("${dockup.docker.tlsVerify:false}")
+    @Value("${dockup.docker.tlsVerify}")
     public boolean tlsVerify;
 
     @Value("${dockup.docker.certPath:}")
