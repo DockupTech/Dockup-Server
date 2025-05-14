@@ -27,8 +27,8 @@ management:
 dockup:
   database:
     path: ${DOCKUP_DB_PATH:cc-server.db}
-  docker:
-    protocol: tcp
-    host: localhost
-    port: 2375
-    tlsVerify: false
+  # docker:
+  #   protocol: tcp
+  #   host: localhost
+  #   port: 2375
+  #   tlsVerify: false
