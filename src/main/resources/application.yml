@@ -29,6 +29,6 @@ dockup:
     path: ${DOCKUP_DB_PATH:cc-server.db}
   docker:
     protocol: ${DOCKUP_DOCKER_PROTOCOL:unix}
-    host: ${DOCKUP_DOCKER_HOST:var/run/docker.sock}
+    host: ${DOCKUP_DOCKER_HOST:/var/run/docker.sock}
     port: ${DOCKUP_DOCKER_PORT:}
     tlsVerify: ${DOCKUP_DOCKER_TLS_VERIFY:false}
