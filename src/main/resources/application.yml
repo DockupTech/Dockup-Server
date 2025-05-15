@@ -14,6 +14,9 @@ spring:
   liquibase:
     change-log: classpath:db/changelog-master.yaml
     enabled: true
+  output:
+    ansi:
+      enabled: always
 
 management:
   endpoints:
@@ -32,3 +35,7 @@ dockup:
     host: ${DOCKUP_DOCKER_HOST:/var/run/docker.sock}
     port: ${DOCKUP_DOCKER_PORT:}
     tlsVerify: ${DOCKUP_DOCKER_TLS_VERIFY:false}
+
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

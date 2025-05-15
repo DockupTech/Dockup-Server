@@ -2,6 +2,8 @@ package tech.dockup.cc_server.service;
 
 import java.util.List;
 import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import tech.dockup.cc_server.config.DockerConfig;
 @Service
 public class DockerService {
 
+  private static final Logger logger = LoggerFactory.getLogger(DockerService.class);
   private DockerClient client;
 
   @Autowired
@@ -41,26 +44,23 @@ public class DockerService {
         .append(dockerConfig.port)
         .toString()
       )
-      .recoverWith(Exception.class, e -> Try.failure(new DockerConnectionException("Failed to build connection string", e)))
       .map((String connectionString) -> DefaultDockerClientConfig.createDefaultConfigBuilder()
         .withDockerHost(connectionString)
         .withDockerTlsVerify(dockerConfig.tlsVerify)
         .build()
       )
-      .recoverWith(Exception.class, e -> Try.failure(new DockerConnectionException("Failed to create Docker client config", e)))
       .map(clientConfig -> Pair.of(clientConfig, new ZerodepDockerHttpClient.Builder()
           .dockerHost(clientConfig.getDockerHost())
           .build())
       )
-      .recoverWith(Exception.class, e -> Try.failure(new DockerConnectionException("Failed to create HTTP client", e)))
       .map(pair -> DockerClientBuilder.getInstance(pair.getLeft())
         .withDockerHttpClient(pair.getRight())
         .build()
       )
+      .andThen(client -> client.listContainersCmd().exec())
+      .andThen(_ -> logger.info("Successfully connected to Docker API"))
       .recoverWith(Exception.class, e -> Try.failure(new DockerConnectionException("Failed to build Docker client", e)))
       .getOrElseThrow(e -> e);
-
-      getAllContainers();
 
   }
 
